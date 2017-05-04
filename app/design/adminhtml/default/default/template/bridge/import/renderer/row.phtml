@@ -1,0 +1,34 @@
+<?php
+/* @var $this Powerbody_Bridge_Block_Adminhtml_Import_Renderer_Row */
+$importedCategory = $this->getData('imported_category');
+$isSelected = boolval($importedCategory['is_selected']);
+$importHelper = Mage::helper('bridge/import');
+$path = $importedCategory['path'];
+$pathElements = explode('/', $path);
+$pathElementsCount = count($pathElements);
+?>
+<tr class="even">
+    <td class="a-left">
+        <input type="checkbox" data-base="<?php echo $importedCategory['base_category_id']; ?>"
+               data-parent="<?php echo $importedCategory['parent_id']; ?>"
+               name="category[<?php echo $importedCategory['id']; ?>]"
+               value="<?php echo $importedCategory['id']; ?>"
+            <?php if (true === $isSelected): ?> checked="checked" <?php endif; ?>/>
+    </td>
+    <td class="a-left">
+        <?php for ($pe = 0; $pe < $pathElementsCount - 2; $pe++): ?>
+            &emsp;
+        <?php endfor; ?>
+        <?php echo $importedCategory['name']; ?>
+    </td>
+    <td class="a-left"><?php echo $importedCategory['created_date']; ?></td>
+    <td class="a-left"><?php echo $importedCategory['updated_date']; ?></td>
+</tr>
+<?php
+if (true === isset($importedCategory['children'])
+    && false === empty($importedCategory['children'])
+):
+    foreach ($importedCategory['children'] as $child) :
+        echo $importHelper->renderImportedCategoryRow($child);
+    endforeach;
+endif; ?>

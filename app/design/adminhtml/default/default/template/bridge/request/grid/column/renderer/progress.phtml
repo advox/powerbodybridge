@@ -1,0 +1,10 @@
+<?php /* @var $this Powerbody_Bridge_Block_Adminhtml_Grid_Column_Renderer_Progress */ ?>
+<?php $row = $this->getRowItem(); ?>
+<?php if ($row->getState() == Powerbody_Bridge_Model_Type::STATE_PROCESSING): ?>
+    <div class="progressbar">
+        <span class="bar-fill" style="width: <?php echo $this->getProgress(); ?>%"></span>
+        <span class="bar-label"><?php echo $this->getProgressCurrent(); ?> / <?php echo $this->getprogressTotal() ?> (<?php echo $this->getProgress(); ?>%)</span>
+    </div>
+<?php else: ?>
+    <?php echo $this->__('N/A'); ?>
+<?php endif; ?>

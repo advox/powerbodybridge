@@ -11,6 +11,7 @@ app/code/local/**
 !app/code/local/Powerbody/**
 
 app/design/install
+
 app/design/adminhtml/default/default/layout/**
 !app/design/adminhtml/default/default/layout/bridge.xml
 !app/design/adminhtml/default/default/layout/category.xml
@@ -20,8 +21,11 @@ app/design/adminhtml/default/default/locale
 
 app/design/adminhtml/default/default/template/**
 !app/design/adminhtml/default/default/template/adminhtml
+!app/design/adminhtml/default/default/template/adminhtml/**
 !app/design/adminhtml/default/default/template/bridge
+!app/design/adminhtml/default/default/template/bridge/**
 !app/design/adminhtml/default/default/template/manufacturer
+!app/design/adminhtml/default/default/template/manufacturer/**
 
 app/design/frontend/**
 

@@ -1,0 +1,30 @@
+<?php /* @var $this Powerbody_Manufacturer_Block_Adminhtml_Manufacturer_Extended_Tree */ ?>
+<div class="categories-side-col">
+    <div class="content-header">
+        <h3 class="icon-head head-categories"><?php echo $this->__('Manufacturers') ?></h3>
+    </div>
+    <div class="tree-holder">
+        <div id="tree-div" style="width:100%; overflow:auto;">
+            <ul class="x-tree-root-ct x-tree-lines">
+                <div class="x-tree-root-node">
+                    <?php foreach ($this->getManufacturersCollection() as $manufacturer): ?>
+                        <?php $selected = ''; ?>
+                        <?php if ($manufacturer->getId() == $this->getRequest()->getParam('id')): ?>
+                            <?php $selected = 'x-tree-selected'; ?>
+                        <?php endif; ?>
+                        <li class="x-tree-node">
+                            <div class="x-tree-node-el folder x-tree-node-leaf <?php echo $selected; ?>">
+                                <a href="<?php echo $this->getListUrl($manufacturer->getId()); ?>" 
+                                    <?php $img = $this->getSkinUrl('images/spacer.gif'); ?>
+                                    <img class="x-tree-ec-icon x-tree-elbow" src="<?php echo $img; ?>">
+                                    <img class="x-tree-node-icon" src="<?php echo $img ?>">
+                                    <span><?php echo $manufacturer->getData('name') ?></span>
+                                </a>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </div>
+            </ul>
+        </div>
+    </div>
+</div>

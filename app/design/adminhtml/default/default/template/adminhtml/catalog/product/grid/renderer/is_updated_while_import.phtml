@@ -1,0 +1,10 @@
+<?php /* @var $this Powerbody_Adminhtml_Block_Catalog_Product_Grid_Renderer_Isupdatedwhileimport */ ?>
+<?php $row = $this->getRowItem(); ?>
+<?php $isUpdatedWhileImport = $row->getData('is_updated_while_import'); ?>
+<?php if (true === (bool)$isUpdatedWhileImport): ?>
+    <span class="is-import-updated green"><?php echo $this->__('Yes'); ?></span>
+<?php elseif(true === $this->isProductTypeConfigurable($row)): ?>
+    <span>-</span>
+<?php else: ?>
+    <span class="is-import-updated red"><?php echo $this->__('No'); ?></span>
+<?php endif; ?>

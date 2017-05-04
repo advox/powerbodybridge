@@ -1,0 +1,48 @@
+<?php
+/* @var $this Powerbody_Bridge_Block_Adminhtml_Import_Tab_Manufacturer */
+?>
+<div class="container">
+    <div class="content-header">
+        <h3 class="icon-head head-categories"><?php echo $this->__('Imported manufacturers'); ?></h3>
+    </div>
+    <div class="grid">
+        <form action="<?php echo $this->getFormAction(); ?>" method="post">
+            <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+            <div id="form-save-action">
+                <button title="Save manufacturers" type="submit" class="scalable save">
+                    <span><span><span><?php echo $this->__('Save manufacturers'); ?></span></span></span>
+                </button>
+            </div>
+            <div class="form-check-button manufacturer">
+                <button type="button" class="scalable">
+                    <span><span><span><?php echo $this->__('Select/Deselect All'); ?></span></span></span>
+                </button>
+            </div>
+            <table class="data manufacturer" id="import_table" cellspacing="0">
+                <thead>
+                <tr class="headings">
+                    <th class="no-link"><?php echo $this->__('Select'); ?></th>
+                    <th class="no-link"><?php echo $this->__('Name'); ?></th>
+                    <th class="no-link"><?php echo $this->__('Created at'); ?></th>
+                    <th class="no-link"><?php echo $this->__('Updated at'); ?></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($this->getImportedManufacturers() as $importedManufacturer): ?>
+                    <?php $isSelected = boolval($importedManufacturer->getData('is_selected')); ?>
+                    <tr class="even" title="">
+                        <td class="a-left">
+                            <input type="checkbox" name="manufacturer[<?php echo $importedManufacturer->getId(); ?>]"
+                                   value="<?php echo $importedManufacturer->getId(); ?>"
+                                <?php if (true === $isSelected): ?> checked="checked" <?php endif; ?>/>
+                        </td>
+                        <td class="a-left"><?php echo $importedManufacturer->getData('name'); ?></td>
+                        <td class="a-left"><?php echo $importedManufacturer->getData('created_date'); ?></td>
+                        <td class="a-left"><?php echo $importedManufacturer->getData('updated_date'); ?></td>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>

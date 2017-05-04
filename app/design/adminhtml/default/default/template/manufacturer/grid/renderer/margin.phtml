@@ -1,0 +1,7 @@
+<?php /** @var $this Powerbody_Manufacturer_Block_Adminhtml_Manufacturer_Grid_Renderer_Margin */?>
+<?php $row = $this->getRow(); ?>
+<input type="text" name="<?php echo $this->getColumn()->getId()?>" value="<?php echo $row->getData($this->getColumn()->getIndex())?>" class="input-text  <?php echo $this->getColumn()->getInlineCss()?>">
+<button onclick="updateMargin(this, <?php echo $row->getId()?> ); return false"><?php echo $this->__('Update')?></button>
+<?php if ($this->_isCurrentMarginLowerThanMinimal() === true):?>
+    <strong><?php echo $this->__('WARNING: ')?></strong><?php echo $this->__('Current margin is lower than minimal allowed.')?>
+<?php endif?>

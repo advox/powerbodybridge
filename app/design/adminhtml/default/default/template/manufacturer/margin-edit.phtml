@@ -1,0 +1,20 @@
+<script type="text/javascript">
+    function updateMargin(button, fieldId)
+    {
+        new Ajax.Request('<?php echo Mage::helper('adminhtml')->getUrl('*/*/updateMargin') ?>', {
+            method: 'post',
+            parameters: {
+                id: fieldId,
+                margin: $(button).previous('input').getValue()
+            },
+            onSuccess: function (response) {
+                if (!response.success) {
+                    JSAlert.alert(response.responseJSON.message, null, JSAlert.Icons.Failed);
+                }
+            },
+            onFailure: function () {
+                JSAlert.alert('An error occurred, please try again.', null, JSAlert.Icons.Failed);
+            }
+        });
+    }
+</script>

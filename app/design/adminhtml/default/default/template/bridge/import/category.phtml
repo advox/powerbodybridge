@@ -1,0 +1,38 @@
+<?php
+/* @var $this Powerbody_Bridge_Block_Adminhtml_Import_Tab_Category */
+?>
+<div class="container">
+    <div class="content-header">
+        <h3 class="icon-head head-categories"><?php echo $this->__('Imported categories'); ?></h3>
+    </div>
+    <div class="grid">
+        <form action="<?php echo $this->getFormAction(); ?>" method="post">
+            <input name="form_key" type="hidden" value="<?php echo Mage::getSingleton('core/session')->getFormKey(); ?>" />
+            <div id="form-save-action">
+                <button type="submit" class="scalable save">
+                    <span><span><span><?php echo $this->__('Save categories'); ?></span></span></span>
+                </button>
+            </div>
+            <div class="form-check-button category">
+                <button type="button" class="scalable">
+                    <span><span><span><?php echo $this->__('Select/Deselect All'); ?></span></span></span>
+                </button>
+            </div>
+            <table class="data category" id="import_table" cellspacing="0">
+                <thead>
+                    <tr class="headings">
+                        <th class="no-link"><?php echo $this->__('Select'); ?></th>
+                        <th class="no-link"><?php echo $this->__('Name'); ?></th>
+                        <th class="no-link"><?php echo $this->__('Created at'); ?></th>
+                        <th class="no-link"><?php echo $this->__('Updated at'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                <?php foreach ($this->getImportedCategories() as $importedCategory): ?>
+                    <?php echo $this->renderImportedCategoryRow($importedCategory);?>
+                <?php endforeach; ?>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
