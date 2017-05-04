@@ -43,7 +43,13 @@
 !/app/design/frontend/base/default/template/catalog/product/view/options
 /app/design/frontend/base/default/template/catalog/product/view/options/**
 !/app/design/frontend/base/default/template/catalog/product/view/options/scpwrapper.phtml
+!/app/design/frontend/base/default/template/page
+/app/design/frontend/base/default/template/page/**
 !/app/design/frontend/base/default/template/page/scpcontentonly.phtml
+!/app/design/frontend/base/default/template/sales
+/app/design/frontend/base/default/template/sales/**
+!/app/design/frontend/base/default/template/sales/reorder
+/app/design/frontend/base/default/template/sales/reorder/**
 !/app/design/frontend/base/default/template/sales/reorder/scpsidebar.phtml
 
 /app/design/frontend/default/
