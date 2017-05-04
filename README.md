@@ -1,5 +1,7 @@
 # powerbodybridge
 
+Min requirements: PHP 5.6, magento 1.8.1
+
 Launching the API
 In the main folder we have uploaded the cron test files. They need adding to crone job in order to make the API work.
 
