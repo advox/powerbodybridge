@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <sections>
+        <catalog>
+            <groups>
+                <manufacturer translate="label">
+                    <label>Manufacturer settings</label>
+                    <sort_order>800</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <url_prefix translate="label">
+                            <label>Manufacturer Url Prefix</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-xml-identifier</validate>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </url_prefix>
+                        <suffix translate="label">
+                            <label>Manufacturer Url Suffix</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-xml-identifier</validate>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </suffix>
+                        <url_format translate="label">
+                            <label>Manufacturer Url Format</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </url_format>
+                        <minimal_margin translate="label">
+                            <label>Minimal Margin</label>
+                            <comment>Percentage.</comment>
+                            <tooltip>If there are manufacturers with margin lower than you will set, prices will be recalculated according to new minimal margin.</tooltip>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-number</validate>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </minimal_margin>
+                        <gbp_to_base_currency_rate translate="label">
+                            <label>GBP to base currency rate</label>
+                            <frontend_type>text</frontend_type>
+                            <validate>validate-number</validate>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </gbp_to_base_currency_rate>
+                    </fields>
+                </manufacturer>
+            </groups>
+        </catalog>
+    </sections>
+</config>

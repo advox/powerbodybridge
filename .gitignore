@@ -1,13 +1,14 @@
-!*
 .vagrant
 .idea
 app/code/core
 
 app/code/community/**
 !app/code/community/OrganicInternet
+!app/code/community/OrganicInternet/**
 
 app/code/local/**
 !app/code/local/Powerbody
+!app/code/local/Powerbody/**
 
 app/design/**
 !app/design/adminhtml/default/default/layout/bridge.xml
