@@ -57,10 +57,12 @@ app/etc/modules/*
 app/locale/
 
 js/**
-!js/jquery
+!js/jquery/
+!js/jquery/*
 !js/jsalert
+!js/jsalert/*
 
-lib
+lib/**
 !lib/Dropshipping
 
 skin
