@@ -41,6 +41,7 @@ app/design/frontend/base/default/template/catalog/product/**
 app/design/frontend/base/default/template/catalog/product/view/**
 !app/design/frontend/base/default/template/catalog/product/view/scpajaxoptions.phtml
 !app/design/frontend/base/default/template/catalog/product/view/scpoptions.phtml
+!app/design/frontend/base/default/template/catalog/product/view/options
 app/design/frontend/base/default/template/catalog/product/view/options/**
 !app/design/frontend/base/default/template/catalog/product/view/options/scpwrapper.phtml
 
