@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.0.1">
+    <default>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/default.css</stylesheet></action>
+        </reference>
+    </default>
+    <bridge_adminhtml_request_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <script>css/bridge.css</script>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="bridge/adminhtml_request" name="bridge_request" />
+        </reference>
+    </bridge_adminhtml_request_index>
+    <bridge_adminhtml_import_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <script>css/bridge.css</script>
+            </action>
+            <action method="addJs">
+                <script>jquery/jquery-3-1-0.min.js</script>
+            </action>
+            <action method="addJs">
+                <script>jquery/jquery-noconflict.js</script>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <script>js/bridge.js</script>
+            </action>
+        </reference>
+        <reference name="left">
+            <block type="bridge/adminhtml_import_tabs" name="bridge_import_tabs"/>
+        </reference>
+        <reference name="bridge_import_tabs">
+            <block type="bridge/adminhtml_import_tab_category" name="bridge_import_tab_category"/>
+            <block type="bridge/adminhtml_import_tab_manufacturer" name="bridge_import_tab_manufacturer"/>
+        </reference>
+    </bridge_adminhtml_import_index>
+</layout>

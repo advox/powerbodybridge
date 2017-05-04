@@ -10,18 +10,29 @@ app/code/local/**
 !app/code/local/Powerbody
 !app/code/local/Powerbody/**
 
-app/design/**
+app/design/install
+app/design/adminhtml/default/default/layout/**
 !app/design/adminhtml/default/default/layout/bridge.xml
 !app/design/adminhtml/default/default/layout/category.xml
 !app/design/adminhtml/default/default/layout/manufacturer.xml
+
+app/design/adminhtml/default/default/locale
+
+app/design/adminhtml/default/default/template/**
 !app/design/adminhtml/default/default/template/adminhtml
 !app/design/adminhtml/default/default/template/bridge
 !app/design/adminhtml/default/default/template/manufacturer
+
+app/design/frontend/**
+
 !app/design/frontend/base/default/layout/simpleconfigurableproducts.xml
+
 !app/design/frontend/base/default/template/catalog/product/view/scpajaxoptions.phtml
 !app/design/frontend/base/default/template/catalog/product/view/scpoptions.phtml
 !app/design/frontend/base/default/template/catalog/product/view/options/scpwrapper.phtml
+
 !app/design/frontend/base/default/template/page/scpcontentonly.phtml
+
 !app/design/frontend/base/default/template/sales/reorder/scpsidebar.phtml
 
 app/etc/**
