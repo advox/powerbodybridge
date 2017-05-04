@@ -38,7 +38,7 @@ app/design/frontend/base/default/template/catalog/product/view/**
 !app/design/frontend/base/default/template/page/scpcontentonly.phtml
 !app/design/frontend/base/default/template/sales/reorder/scpsidebar.phtml
 
-app/design/frontend/default
+app/design/frontend/default/**
 
 app/etc/**
 app/etc/modules/*
