@@ -72,8 +72,7 @@
 !/skin/adminhtml/default/default/css/default*
 
 /skin/frontend/default
-
-/skin/frontend/base/default
+/skin/frontend/base/default/**
 !/skin/frontend/base/default/images/
 !/skin/frontend/base/default/js/
 /skin/frontend/base/default/images/*
