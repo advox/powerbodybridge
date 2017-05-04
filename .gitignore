@@ -31,7 +31,6 @@ app/design/frontend/base/default/etc
 app/design/frontend/base/default/layout/**
 !app/design/frontend/base/default/layout/simpleconfigurableproducts.xml
 
-
 app/design/frontend/base/default/template/**
 !app/design/frontend/base/default/template/catalog
 app/design/frontend/base/default/template/catalog/**
@@ -44,13 +43,13 @@ app/design/frontend/base/default/template/catalog/product/view/**
 !app/design/frontend/base/default/template/catalog/product/view/options
 app/design/frontend/base/default/template/catalog/product/view/options/**
 !app/design/frontend/base/default/template/catalog/product/view/options/scpwrapper.phtml
-
 !app/design/frontend/base/default/template/page/scpcontentonly.phtml
 !app/design/frontend/base/default/template/sales/reorder/scpsidebar.phtml
 
 app/design/frontend/default/
 
 app/etc/**
+!app/etc/modules
 app/etc/modules/*
 !app/etc/modules/Organic*
 !app/etc/modules/Powerbody*
