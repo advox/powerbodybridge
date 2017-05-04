@@ -1,0 +1,6 @@
+.progressbar { background-color: #F55600; height: 16px; border-radius: 15px; margin-top: 1px; overflow: hidden; position: relative; }
+.progressbar span.bar-fill { background-color: #3CB861; display: block; height: 100%; }
+.progressbar span.bar-label { position: absolute; display: block; text-align: center; top: 0px; width: 100%; color: #fff; font: bold 10px/16px Arial,Helvetica,sans-serif; }
+#product_import_tabs_categories_content .content-header,
+#product_import_tabs_manufacturers_content .content-header { height:28px; }
+#form-save-action { float: right; overflow: hidden; margin-bottom: 5px; }
