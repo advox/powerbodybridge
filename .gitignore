@@ -76,6 +76,8 @@
 !/skin/adminhtml/default/default/css
 !/skin/adminhtml/default/default/css/bridge*
 !/skin/adminhtml/default/default/css/default*
+!/skin/adminhtml/default/default/js
+!/skin/adminhtml/default/default/js/bridge*
 
 /skin/frontend/default
 /skin/frontend/base/default/**
