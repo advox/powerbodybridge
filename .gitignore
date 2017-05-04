@@ -30,15 +30,24 @@ app/design/adminhtml/default/default/template/**
 app/design/frontend/base/default/etc
 app/design/frontend/base/default/layout/**
 !app/design/frontend/base/default/layout/simpleconfigurableproducts.xml
+
+
 app/design/frontend/base/default/template/**
+!app/design/frontend/base/default/template/catalog
+app/design/frontend/base/default/template/catalog/**
+!app/design/frontend/base/default/template/catalog/product
+app/design/frontend/base/default/template/catalog/product/**
+!app/design/frontend/base/default/template/catalog/product/view
 app/design/frontend/base/default/template/catalog/product/view/**
 !app/design/frontend/base/default/template/catalog/product/view/scpajaxoptions.phtml
 !app/design/frontend/base/default/template/catalog/product/view/scpoptions.phtml
+app/design/frontend/base/default/template/catalog/product/view/options/**
 !app/design/frontend/base/default/template/catalog/product/view/options/scpwrapper.phtml
+
 !app/design/frontend/base/default/template/page/scpcontentonly.phtml
 !app/design/frontend/base/default/template/sales/reorder/scpsidebar.phtml
 
-app/design/frontend/default/**
+app/design/frontend/default/
 
 app/etc/**
 app/etc/modules/*
