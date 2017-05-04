@@ -64,6 +64,7 @@ js/**
 
 lib/**
 !lib/Dropshipping
+!lib/Dropshipping/*
 
 skin
 !skin/adminhtml/default/default/css/bridge.css
