@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<adminhtml>
+    <menu>
+        <catalog>
+            <children>
+                <manage_manufactuers module="manufacturer">
+                    <title>Manage Manufacturers</title>
+                    <sort_order>15</sort_order>
+                    <children>
+                        <manufactuers module="manufacturer">
+                            <title>Manufacturers</title>
+                            <action>adminhtml/manufacturer_manufacturer/index</action>
+                        </manufactuers>
+                        <products module="manufacturer">
+                            <title>Manufacturer Products</title>
+                            <action>adminhtml/manufacturer_product/index</action>
+                        </products>
+                    </children>
+                </manage_manufactuers>
+            </children>
+        </catalog>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <catalog>
+                        <children>
+                            <manage_manufactuers translate="title" module="manufacturer">
+                                <title>Manage  Manufacturers</title>
+                                <sort_order>15</sort_order>
+                                <children>
+                                    <manufactuers module="manufacturer">
+                                        <title>Manufacturers</title>
+                                    </manufactuers>
+                                    <products module="manufacturer">
+                                        <title>Manufacturer Products</title>
+                                    </products>
+                                </children>
+                            </manage_manufactuers>
+                        </children>
+                    </catalog>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</adminhtml>

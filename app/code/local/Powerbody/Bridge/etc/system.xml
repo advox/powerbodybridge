@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <tabs>
+        <bridge_tab translate="label" module="bridge">
+            <label>Bridge</label>
+            <sort_order>1005</sort_order>
+        </bridge_tab>
+    </tabs>
+    <sections>
+        <bridge_settings translate="label" module="bridge">
+            <label>Bridge Settings</label>
+            <tab>bridge_tab</tab>
+            <sort_order>1065</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>0</show_in_website>
+            <show_in_store>0</show_in_store>
+            <groups>
+                <basic_bridge_settings translate="label" module="bridge">
+                    <label>Basic Settings</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <sort_order>10</sort_order>
+                    <fields>
+                        <enable translate="label" module="bridge">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enable>
+                        <default_destination_store_id>
+                            <label>Default Destination Store</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_store</source_model>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </default_destination_store_id>
+                        <number_of_hours_since_last_change_products>
+                            <label>Number of hours since the last change</label>
+                            <frontend_type>text</frontend_type>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </number_of_hours_since_last_change_products>
+                        <base_media_url>
+                            <label>Base site media url</label>
+                            <frontend_type>text</frontend_type>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </base_media_url>
+                    </fields>
+                </basic_bridge_settings>
+                <service_bridge_settings translate="label" module="bridge">
+                    <label>Web Service Settings</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <sort_order>20</sort_order>
+                    <fields>
+                        <default_api_user_name>
+                            <label>Default API User Name</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </default_api_user_name>
+                        <default_api_user_password>
+                            <label>Default API User Password</label>
+                            <frontend_type>password</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </default_api_user_password>
+                        <default_wsdl_url>
+                            <label>Defaut WSDL Url </label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </default_wsdl_url>
+                    </fields>
+                </service_bridge_settings>
+                <dropshipping>
+                    <label>Dropshipping Settings</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <sort_order>30</sort_order>
+                    <fields>
+                        <enable translate="label" module="bridge">
+                            <label>Enabled</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <comment>Enable sync orders to base instance</comment>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enable>
+                        <api_user_name>
+                            <label>API User Name</label>
+                            <frontend_type>text</frontend_type>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </api_user_name>
+                        <api_key>
+                            <label>API Key</label>
+                            <frontend_type>password</frontend_type>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </api_key>
+                        <wsdl_url>
+                            <label>WSDL Url</label>
+                            <frontend_type>text</frontend_type>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </wsdl_url>
+                        <shipping_method_id>
+                            <label>Shipping Method Id</label>
+                            <frontend_type>text</frontend_type>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                            <sort_order>50</sort_order>
+                            <comment>From base instance</comment>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </shipping_method_id>
+                        <available_order_statuses_to_powerbody_create_order>
+                            <label>Available order statuses to powerbody create order</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>powerbody_adminhtml/system_config_source_order_status</source_model>
+                            <sort_order>60</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </available_order_statuses_to_powerbody_create_order>
+                        <active_order_statuses_to_powerbody_update_order>
+                            <label>Active order statuses to powerbody update order</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>powerbody_adminhtml/system_config_source_order_status</source_model>
+                            <sort_order>70</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </active_order_statuses_to_powerbody_update_order>
+                    </fields>
+                </dropshipping>
+                <ingredients>
+                    <label>Ingredients</label>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <sort_order>40</sort_order>
+                    <fields>
+                        <labels_default_host>
+                            <label>Labels default host</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </labels_default_host>
+                    </fields>
+                </ingredients>
+            </groups>
+        </bridge_settings>
+    </sections>
+</config>

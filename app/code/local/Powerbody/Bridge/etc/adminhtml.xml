@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <menu>
+        <bridge translate="title" module="bridge">
+            <title>Bridge</title>
+            <sort_order>80</sort_order>
+            <depends>
+                <config>bridge_settings/basic_bridge_settings/enable</config>
+            </depends>
+            <children>
+                <import_request translate="title" module="bridge">
+                    <title>Import requested</title>
+                    <action>bridge/adminhtml_import/index</action>
+                </import_request>
+            </children>
+        </bridge>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <bridge>
+                        <title>Bridge</title>
+                        <sort_order>80</sort_order>
+                        <children>
+                            <import_request translate="title" module="bridge">
+                                <title>Import requested</title>
+                            </import_request>
+                        </children>
+                    </bridge>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <bridge_settings>
+                                        <title>Bridge Settings</title>
+                                    </bridge_settings>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>        
+</config>
