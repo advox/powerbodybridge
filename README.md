@@ -2,34 +2,41 @@
 
 Min requirements: PHP 5.6, magento 1.8.1
 
-Launching the API
-In the main folder we have uploaded the cron test files. They need adding to crone job in order to make the API work.
+Launching the API<br>
+In the "test" folder we have uploaded the files of scripts that should be later removed. Use these files only for test purpose. 
+Configuration of Cron in magento for these actions is present in app/code/local/Powerbody/Bridge/etc/config.xml but make sure, that cron is running in magento system. 
 
-Test files (should add to cron):
-orderscreate.php - creating order (recommended every 5 minutes)
-ordersupdate.php - order status update (recommended every 5 minutes)
-prices.php - stock levels + prices (every 15-30 minutes)
-product.php - product data (twice a day)
+Test files:<br> 
+orderscreate.php - creating order (recommended every 5 minutes)<br> 
+ordersupdate.php - order status update (recommended every 15 minutes)<br> 
+prices.php - stock levels + prices (every 15-30 minutes)<br> 
+product.php - product data (twice a day)<br> 
 
-Configuration:
+# bridge
+<b>System -> Configuration -> Bridge</b><br>
+- Basic settings<br>
+Select "Yes" to enable. Additional tab "Bridge" in the main menu should appear.
+- Web Service Settings<br> 
+Enter your webservice login credentials (to obtain credentials -> Contact Us).
+Default WSDL Url: http://www.powerbody.co.uk/index.php/api/soap/?wsdl
+- Dropshipping Settings<br>
+Enter webservice credentials for order synchronization.
+Select the statuses for the following:<br>
+"Available order statuses to powerbody create order" - sending orders with the marked statuses to powerbody system<br>
+"Active order statuses to powerbody update order" - requesting updates from powerbody for orders with the following statuses
+- Ingredients<br>
+In development
 
-System -> Configuration -> Bridge
-You need to enter your webservice login credentials (Web service settings - product create, Dropshipping - order create).
+<b>Bridge -> Import requested</b> (main menu)<br>
+Pick the brands and categories for import. Then wait for cron or execute main product import action (test -> products.php file) (important: this action add's products with retail prices, the prices will be updated for individual customer after cron price action is executed (test -> prices.php))
 
-Dropshipping settings -> You need to select the statuses for the following:
-- "Available order statuses to powerbody create order" - sending orders with the marked statuses to powerbody system
-- "Active order statuses to powerbody update order" - requesting updates from powerbody for orders with the following statuses
+#scp
+<b>System -> Configuration -> SCP</b><br>
+SCP Plugin allows to display products as simple at the checkout (instead of configurable products). 
+This plugin might need to be adjusted if custom magento store template is applied.
 
-System -> Configuration -> SCP
-SCP Plugin allows to display products as simple products at the checkout (instead of configurable products). This plugin might need adjusting with custom Magento templates
+#manufacturers
+<b>Catalog -> Manage Manufacturers -> Manufacturers</b><br>
+Place where margin can be set (for the entire brand).
 
-Bridge
-Bridge -> Import requested
-You need to pick the brands (or categories) you want to import to your system and execute product.php file (important: this file contains retail prices, the prices will need updating with prices.php)
-
-Manufacturers
-Catalog->Manage Manufacturers->Manufacturers
-This is where a Margin can be set (for the entire brand).
-
-Catalog->Manage Products
-If you want to edit prices, product descriptions or other product details you have to do that on the product page and click No on Is Updated While Import * field. This will disable ALL future updates for the product - we will only refresh prices if the basic price changes.
+To preserve description, name changes etc., visit product page and change product attribute "Is Updated While Import" to "No".
