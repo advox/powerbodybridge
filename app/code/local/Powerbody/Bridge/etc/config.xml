@@ -110,6 +110,14 @@
                     <model>bridge/order_cron::updateDropshippingOrders</model>
                 </run>
             </stockalert_autosend>
+            <compare_versions>
+                <schedule>
+                    <cron_expr>0 0 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>bridge/cron_version::notifyAdminIfBridgeIsOutdated</model>
+                </run>
+            </compare_versions>
         </jobs>
     </crontab>
     <default>
