@@ -28,7 +28,9 @@ class Powerbody_Bridge_Block_Adminhtml_Import_Tab_Manufacturer extends Mage_Admi
     public function getImportedManufacturers()
     {
         /* @var $importedManufacturersCollection Powerbody_Bridge_Model_Mysql4_Imported_Manufacturer_Collection */
-        $importedManufacturersCollection = Mage::getModel('bridge/imported_manufacturer')->getCollection()
+        $importedManufacturersCollection = Mage::getModel('bridge/imported_manufacturer')
+            ->getCollection()
+            ->addFieldToFilter('dropshipping_status', Powerbody_Bridge_Model_Imported_Manufacturer::DROPSHIPPING_STATUS_ENABLED)
             ->setOrder('name', Varien_Data_Collection::SORT_ORDER_ASC);
 
         return $importedManufacturersCollection;

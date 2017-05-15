@@ -71,12 +71,11 @@ class Powerbody_Bridge_Model_Sync_Product_Configurable extends Powerbody_Bridge_
             $configurableProductModel = $this->_getProductModel($itemData['sku']);
 
             $itemData = $this->_removeNotUsedDataFields($itemData);
-
+            
             if (null === $configurableProductModel->getId()) {
                 $this->_createProduct($itemData);
             } else {
                 $result = $this->_compareCurrentProductWithWebserviceProduct($configurableProductModel, $itemData);
-
                 if (true === $result['create']) {
                     $configurableProductToDelete['delete'][] = $itemData['sku'];
                     $configurableDataToCreate[] = $itemData;
@@ -87,7 +86,6 @@ class Powerbody_Bridge_Model_Sync_Product_Configurable extends Powerbody_Bridge_
                 }
             }
         }
-
         $this->_deleteUnusedConfigurableProducts($configurableProductToDelete);
 
         foreach ($configurableDataToCreate as $itemData) {
@@ -127,11 +125,19 @@ class Powerbody_Bridge_Model_Sync_Product_Configurable extends Powerbody_Bridge_
     protected function _compareResponseDataToDropclientData(array $itemsDataArray)
     {
         $dropclientConfigurableArray = $this->_getCurrentDropclientConfigurable();
-
+        $productCollection = Mage::getModel('catalog/product')
+            ->getCollection()
+            ->addAttributeToFilter('type_id', Mage_Catalog_Model_Product_Type::TYPE_CONFIGURABLE)
+            ->addAttributeToFilter('status', Mage_Catalog_Model_Product_Status::STATUS_DISABLED);
+        $configurableDisabledSkuArray = $productCollection->getColumnValues('sku');
+        $skuArray = array_keys($itemsDataArray);
         $this->_compareData = [
             'create' => $this->_compareConfigurableToCreate($dropclientConfigurableArray, $itemsDataArray),
             'delete' => $this->_compareConfigurableToDelete($dropclientConfigurableArray, $itemsDataArray),
-            'update' => $this->_compareConfigurableToUpdate($dropclientConfigurableArray, $itemsDataArray),
+            'update' => array_merge(
+                $this->_compareConfigurableToUpdate($dropclientConfigurableArray, $itemsDataArray), 
+                array_intersect($configurableDisabledSkuArray, $skuArray)
+            ),
         ];
     }
 
@@ -218,6 +224,7 @@ class Powerbody_Bridge_Model_Sync_Product_Configurable extends Powerbody_Bridge_
     protected function _getProductsData(array $productsSkuArray)
     {
         $configurableProductsData = [];
+        
         if (false === empty($productsSkuArray)) {
             $serviceParams['product_sku'] = $productsSkuArray;
             $configurableProductsData = $this->_makeServiceMethodRequest(
@@ -225,7 +232,7 @@ class Powerbody_Bridge_Model_Sync_Product_Configurable extends Powerbody_Bridge_
                 $serviceParams
             );
         }
-
+        
         return $configurableProductsData;
     }
 
@@ -255,6 +262,8 @@ class Powerbody_Bridge_Model_Sync_Product_Configurable extends Powerbody_Bridge_
                     $this->_getInternalCategoryIds($productData['categories'])
                 );
             }
+            $configurableProductModel->setData('website_ids', $this->_getWebsiteIds());
+            $configurableProductModel->setData('status', Mage_Catalog_Model_Product_Status::STATUS_ENABLED);
             $configurableProductModel->save();
 
             /* @var $stockItemModel Mage_CatalogInventory_Model_Stock_Item */
@@ -280,9 +289,10 @@ class Powerbody_Bridge_Model_Sync_Product_Configurable extends Powerbody_Bridge_
     {
         $webserviceChildrenArray = array_keys($webserviceData['children']);
         $configurableProductChildrenArray = $this->_getConfigurableProductChildrenArray($catalogProductModel);
-
-        if (true === empty(array_diff($configurableProductChildrenArray, $webserviceChildrenArray))
-            && true === empty(array_diff($webserviceChildrenArray, $configurableProductChildrenArray))
+        
+        if ((true === empty(array_diff($configurableProductChildrenArray, $webserviceChildrenArray))
+            && true === empty(array_diff($webserviceChildrenArray, $configurableProductChildrenArray)))
+            || $webserviceData['status'] !== $catalogProductModel->getData('status')
         ) {
             return [
                 'update' => $this->_isProductToUpdate($catalogProductModel, $webserviceData),
@@ -305,7 +315,7 @@ class Powerbody_Bridge_Model_Sync_Product_Configurable extends Powerbody_Bridge_
     ) {
         $webserviceArray = $this->_generateShortProductArray($webserviceData);
         $catalogProductArray = $this->_generateShortProductArray($catalogProductModel);
-
+        
         return $catalogProductArray !== $webserviceArray;
     }
 

@@ -64,14 +64,13 @@ class Powerbody_Bridge_Model_Sync_Product extends Powerbody_Bridge_Model_Sync_Pr
             $selectedImportedCategoriesBaseIds,
             $selectedImportedManufacturersBaseIds
         );
-
         $itemsDataArrayForConfigurable = $this->_configurableService->_getProductsSkuArray(
             $selectedImportedCategoriesBaseIds,
             $selectedImportedManufacturersBaseIds
         );
-
+        
         if (true === $this->_checkResponseArrayIsValid($itemsDataArray)) {
-            $this->_removeNotNeededProducts($itemsDataArray['data']);
+            $this->_disableNotNeededProducts($itemsDataArray['data']);
         }
 
         if (true === $this->_checkResponseArrayIsValid($itemsDataArrayForConfigurable)) {
@@ -80,6 +79,7 @@ class Powerbody_Bridge_Model_Sync_Product extends Powerbody_Bridge_Model_Sync_Pr
 
         if (true === $this->_checkResponseArrayIsValid($itemsDataArray)) {
             $productsSkuArray = $this->_getProductsSkuToUpdate($itemsDataArray['data']);
+            
             $this->_processImportQueue($productsSkuArray);
         }
 
@@ -91,7 +91,22 @@ class Powerbody_Bridge_Model_Sync_Product extends Powerbody_Bridge_Model_Sync_Pr
         $categoryIndexerProductModel = Mage::getModel('catalog/category_indexer_product');
         $categoryIndexerProductModel->reindexAll();
     }
-
+    
+    /**
+     * @param array $itemsDataArray
+     */
+    protected function _disableNotNeededProducts(array $itemsDataArray)
+    {
+        $skuArray = array_keys($itemsDataArray);
+        $productsIdsToRemoveArray = $this->_getProductsIdsWithoutMatchingSKU($skuArray);
+        
+        if (true === empty($productsIdsToRemoveArray)) {
+            return;
+        }
+        
+        $this->_getProductRemoveService()->disableProductsByProductIdsArray($productsIdsToRemoveArray);
+    }
+    
     /**
      * reload additional product data
      */
@@ -113,10 +128,10 @@ class Powerbody_Bridge_Model_Sync_Product extends Powerbody_Bridge_Model_Sync_Pr
     {
         $skuArray = array_keys($itemsDataArray);
         $productsIdsWithoutMatchingSKU = $this->_getProductsIdsWithoutMatchingSKU($skuArray);
+        
         if (true === empty($productsIdsWithoutMatchingSKU)) {
             return;
         }
-
         $this->_getProductRemoveService()->removeProducts($productsIdsWithoutMatchingSKU);
     }
 
@@ -152,20 +167,30 @@ class Powerbody_Bridge_Model_Sync_Product extends Powerbody_Bridge_Model_Sync_Pr
             $productUpdatedAt = $productModel->getData('updated_at');
             $internalUpdatedAt = new DateTime($productUpdatedAt);
             $externalUpdatedAt = new DateTime($updatedAt);
-            if (null === $productUpdatedAt || $internalUpdatedAt < $externalUpdatedAt) {
+            if ((null === $productUpdatedAt || $internalUpdatedAt < $externalUpdatedAt)
+                || $this->_checkProductIsDisableAndHasEmptyWebsiteIds($productModel)
+            ) {
                 $productsSkuArray[] = $sku;
             }
         }
-
         return $productsSkuArray;
     }
-
+    
+    /**
+     * @param Mage_Catalog_Model_Product $productModel
+     * @return bollean
+     */
+    protected function _checkProductIsDisableAndHasEmptyWebsiteIds(
+        Mage_Catalog_Model_Product $productModel
+    ) {
+        return $productModel->getData('status') == Mage_Catalog_Model_Product_Status::STATUS_DISABLED
+                && true === empty($productModel->getWebsiteIds());
+    }
     /**
      * @param array $itemsDataArray
      */
     protected function _saveItems(array $itemsDataArray)
     {
-        Mage::app()->setCurrentStore(Mage_Core_Model_App::ADMIN_STORE_ID);
         foreach ($itemsDataArray as $itemData) {
             $this->_saveItem($itemData);
         }
@@ -224,7 +249,6 @@ class Powerbody_Bridge_Model_Sync_Product extends Powerbody_Bridge_Model_Sync_Pr
 
         /* @var $productModel Mage_Catalog_Model_Product */
         $productModel = $this->_getProductModel($itemData['sku']);
-
         $isProductNew = ($productModel->getId() === null);
 
         $itemData = $this->_removeNotNeededDataFromImport($productModel, $itemData, $isProductNew);
@@ -242,10 +266,19 @@ class Powerbody_Bridge_Model_Sync_Product extends Powerbody_Bridge_Model_Sync_Pr
         if (true === $isProductNew) {
             $productModel->setData('is_updated_while_import', true);
         }
-
+        
         if (isset($itemData['manufacturers']) && false === empty($itemData['manufacturers'])) {
             $productModel->setData('manufacturer_ids', $itemData['manufacturers']);
             $productModel->setData('manufacturer', $itemData['manufacturers'][self::MANUFACTURER_ARRAY_FIRST_MANUFACTURER]);
+        }
+        
+        if ($productModel->getData('status') == Mage_Catalog_Model_Product_Status::STATUS_ENABLED ) {
+            $parentIdsArray = Mage::getResourceSingleton('catalog/product_type_configurable')
+                ->getParentIdsByChild($productModel->getId());
+           
+            if (false === empty($parentIdsArray)) {
+               $productModel->setVisibility(Mage_Catalog_Model_Product_Visibility::VISIBILITY_NOT_VISIBLE);
+            }
         }
 
         $productModel->save();
@@ -289,6 +322,7 @@ class Powerbody_Bridge_Model_Sync_Product extends Powerbody_Bridge_Model_Sync_Pr
             if (isset($attributeMapped[$entityTypeId][$attributeCode][$attributeValue])) {
                 $productAttributes[$attributeCode] = $attributeMapped[$entityTypeId][$attributeCode][$attributeValue];
             }
+
         }
 
         return $productAttributes;

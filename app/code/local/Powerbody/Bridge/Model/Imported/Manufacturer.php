@@ -5,6 +5,8 @@
  */
 class Powerbody_Bridge_Model_Imported_Manufacturer extends Mage_Core_Model_Abstract
 {
+    const DROPSHIPPING_STATUS_DISABLED = 0;
+    const DROPSHIPPING_STATUS_ENABLED = 1;
     /**
      * construct
      */
