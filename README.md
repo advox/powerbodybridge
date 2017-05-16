@@ -25,7 +25,7 @@ Select the statuses for the following:<br>
 "Available order statuses to powerbody create order" - sending orders with the marked statuses to powerbody system<br>
 "Active order statuses to powerbody update order" - requesting updates from powerbody for orders with the following statuses
 - Ingredients<br>
-In development
+In order to download ingredients image for product, watermark image must be uploaded to server. To upload image, visit System->Configuration->Bridge settings->Ingredients->Watermark image. <b>Warning:</b> watermark must be added to all store views. Once a day, a cron job will download changed or new ingredients images. To test: execute script under test/additional.php
 
 <b>Bridge -> Import requested</b> (main menu)<br>
 Pick the brands and categories for import. Then wait for cron or execute main product import action (test -> products.php file) (important: this action add's products with retail prices, the prices will be updated for individual customer after cron price action is executed (test -> prices.php))
