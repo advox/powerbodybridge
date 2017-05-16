@@ -5,8 +5,6 @@
  */
 class Powerbody_Ingredients_Block_View extends Mage_Core_Block_Template
 {
-    const LABEL_IMAGE_PATH = 'labels/img/';
-
     /**
      * Powerbody_Ingredients_Block_View constructor.
      */
@@ -17,37 +15,31 @@ class Powerbody_Ingredients_Block_View extends Mage_Core_Block_Template
     }
 
     /**
-     * @return string
+     * @return Mage_Catalog_Model_Product
      */
-    public function getProductLabelImage()
+    public function getCurrentProduct()
     {
-        $currentProduct = Mage::registry('current_product');
-        $filename = $this->getLabelImageFilename($currentProduct->getData('entity_id'));
-        if ($filename != '') {
-            return Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA)
-                . self::LABEL_IMAGE_PATH . DS . $filename;
-        }
-        return '';
+        return Mage::registry('current_product');
     }
 
     /**
-     * @param int $productId
-     * @return string
+     * @return array
      */
-    public function getLabelImageFilename($productId)
+    public function getSimpleProductCollectionForConfigurable()
     {
-        /* @var Powerbody_Ingredients_Model_Mysql4_Product_Label_Image_Collection $modelLabelImageCollection */
-        $modelLabelImageCollection = Mage::getModel('ingredients/product_label_image')
-            ->getCollection()
-            ->addFilter('product_id', $productId);
+        /* @var $configurableProductModel Mage_Catalog_Model_Product */
+        $configurableProductModel = $this->getCurrentProduct();
+        /* @var $configurableTypeModel Mage_Catalog_Model_Product_Type_Configurable */
+        $configurableTypeModel = Mage::getModel('catalog/product_type_configurable');
 
-        $filename = '';
-        if ($modelLabelImageCollection->count() > 0) {
-            /* @var Powerbody_Ingredients_Model_Product_Label_Image $modelItem */
-            $modelItem = $modelLabelImageCollection->getFirstItem();
-            $filename = $modelItem['image'];
-        }
-        return $filename;
+        return $configurableTypeModel->getUsedProducts(null,$configurableProductModel);
     }
 
+    /**
+     * @return string
+     */
+    public function getIngredientUrl()
+    {
+        return Mage::getUrl('ingredients/label');
+    }
 }

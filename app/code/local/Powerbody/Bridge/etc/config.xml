@@ -94,6 +94,14 @@
                     <model>bridge/importer::importStocksAndPrices</model>
                 </run>
             </import_partial>
+            <import_additional>
+                <schedule>
+                    <cron_expr>30 2 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>bridge/importer::importAdditional</model>
+                </run>
+            </import_additional>
             <create_dropshipping_orders>
                 <schedule>
                     <cron_expr>*/5 * * * *</cron_expr>

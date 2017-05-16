@@ -20,6 +20,21 @@ abstract class Powerbody_Bridge_Model_Sync_Abstract
     }
 
     /**
+     * @param array $itemsDataArray
+     *
+     * @return bool
+     */
+    protected function _checkResponseArrayIsValid(array $itemsDataArray)
+    {
+        return (true === is_array($itemsDataArray)
+            && true === isset($itemsDataArray['success'])
+            && true === $itemsDataArray['success']
+            && true === isset($itemsDataArray['data'])
+            && true === is_array($itemsDataArray['data'])
+        );
+    }
+
+    /**
      * @param string $serviceMethod
      * @param array  $serviceParams
      *
@@ -51,7 +66,6 @@ abstract class Powerbody_Bridge_Model_Sync_Abstract
     {
         /* @var $productModel Mage_Catalog_Model_Product */
         $productModel = Mage::getModel('catalog/product');
-
         if ($sku !== null) {
             $productModel->load($productModel->getIdBySku($sku));
         }

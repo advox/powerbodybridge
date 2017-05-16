@@ -74,21 +74,6 @@ abstract class Powerbody_Bridge_Model_Sync_Product_Abstract extends Powerbody_Br
     }
 
     /**
-     * @param array $itemsDataArray
-     *
-     * @return bool
-     */
-    protected function _checkResponseArrayIsValid(array $itemsDataArray)
-    {
-        return (true === is_array($itemsDataArray)
-            && true === isset($itemsDataArray['success'])
-            && true === $itemsDataArray['success']
-            && true === isset($itemsDataArray['data'])
-            && true === is_array($itemsDataArray['data'])
-        );
-    }
-
-    /**
      * @param array $externalIds
      *
      * @return array
