@@ -17,6 +17,7 @@ class Powerbody_Bridge_Model_Cron
                 $dropshippingOrderModel->processCreatingOrders();
             } catch (Exception $e) {
                 Mage::logException($e);
+                Mage::throwException($e->getMessage());
             }
         }
     }
@@ -33,6 +34,7 @@ class Powerbody_Bridge_Model_Cron
                 $dropshippingOrderModel->updateOrders();
             } catch (Exception $e) {
                 Mage::logException($e);
+                Mage::throwException($e->getMessage());
             }
         }
     }
