@@ -80,7 +80,7 @@
         <jobs>
             <import_full>
                 <schedule>
-                    <cron_expr>0 */12 * * *</cron_expr>
+                    <cron_expr>0 */3 * * *</cron_expr>
                 </schedule>
                 <run>
                     <model>bridge/importer::importAttributesAndProducts</model>
@@ -88,7 +88,7 @@
             </import_full>
             <import_partial>
                 <schedule>
-                    <cron_expr>*/15 * * * *</cron_expr>
+                    <cron_expr>*/1 * * * *</cron_expr>
                 </schedule>
                 <run>
                     <model>bridge/importer::importStocksAndPrices</model>
@@ -96,7 +96,7 @@
             </import_partial>
             <create_dropshipping_orders>
                 <schedule>
-                    <cron_expr>*/5 * * * *</cron_expr>
+                    <cron_expr>*/1 * * * *</cron_expr>
                 </schedule>
                 <run>
                     <model>bridge/cron::createDropshippingOrders</model>
