@@ -44,8 +44,8 @@ $productType = $currentProductModel->getData('type_id');
                     data: { productId: productId }
                 })
                 .done(function (result) {
+                    $('.product-ingredient').empty();
                     if (true === result.success) {
-                        $('.product-ingredient').empty();
                         $('.product-ingredient').html(
                             '<img src="' + result.data + '"/>'
                         );

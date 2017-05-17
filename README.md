@@ -11,6 +11,7 @@ orderscreate.php - creating order (recommended every 5 minutes)<br>
 ordersupdate.php - order status update (recommended every 15 minutes)<br> 
 prices.php - stock levels + prices (every 15-30 minutes)<br> 
 product.php - product data (twice a day)<br> 
+additional.php - other (ex. ingredients labels images) (once a day)<br>
 
 # bridge
 <b>System -> Configuration -> Bridge</b><br>

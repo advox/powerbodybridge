@@ -185,6 +185,8 @@ Product view
             <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params/><!--<if/><condition>can_load_calendar_js</condition>--></action>
             <action method="addItem"><type>js</type><name>calendar/calendar.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
             <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name><!--<params/><if/><condition>can_load_calendar_js</condition>--></action>
+            <action method="addItem"><type>js</type><name>jquery/jquery-3-1-0.min.js</name></action>
+            <action method="addItem"><type>js</type><name>jquery/jquery-noconflict.js</name></action>
 
             <action method="addCss"><stylesheet>css/ingredients.css</stylesheet></action>
         </reference>

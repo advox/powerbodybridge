@@ -27,9 +27,6 @@
                     <product_label>
                         <table>ingredients_product_label</table>
                     </product_label>
-                    <product_label_image>
-                        <table>ingredients_product_label_image</table>
-                    </product_label_image>
                 </entities>
             </ingredients_mysql4>
         </models>
@@ -41,15 +38,15 @@
             </ingredients_setup>
         </resources>
     </global>
-    <admin>
+    <frontend>
         <routers>
             <ingredients>
-                <use>admin</use>
+                <use>standard</use>
                 <args>
                     <module>Powerbody_Ingredients</module>
                     <frontName>ingredients</frontName>
                 </args>
             </ingredients>
         </routers>
-    </admin>
+    </frontend>
 </config>
