@@ -11,9 +11,14 @@ class Powerbody_Bridge_Model_Cron
     public function createDropshippingOrders()
     {
         if (Mage::helper('bridge')->getBridgeIsEnabled()) {
-            /* @var $dropshippingOrderModel Powerbody_Bridge_Model_Dropshipping_Order */
-            $dropshippingOrderModel = Mage::getModel('bridge/dropshipping_order');
-            $dropshippingOrderModel->processCreatingOrders();
+            try {
+                /* @var $dropshippingOrderModel Powerbody_Bridge_Model_Dropshipping_Order */
+                $dropshippingOrderModel = Mage::getModel('bridge/dropshipping_order');
+                $dropshippingOrderModel->processCreatingOrders();
+            } catch (Exception $e) {
+                Mage::logException($e);
+                Mage::throwException($e->getMessage());
+            }
         }
     }
     
@@ -28,7 +33,8 @@ class Powerbody_Bridge_Model_Cron
                 $dropshippingOrderModel = Mage::getModel('bridge/dropshipping_order');
                 $dropshippingOrderModel->updateOrders();
             } catch (Exception $e) {
-                Mage::throwException($e);
+                Mage::logException($e);
+                Mage::throwException($e->getMessage());
             }
         }
     }
