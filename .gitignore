@@ -36,10 +36,6 @@
 /app/design/frontend/base/default/template/catalog/**
 !/app/design/frontend/base/default/template/catalog/product
 /app/design/frontend/base/default/template/catalog/product/**
-!/app/design/frontend/base/default/template/catalog/product/view.phtml
-!/app/design/frontend/base/default/template/catalog/product/label
-/app/design/frontend/base/default/template/catalog/product/label/**
-!/app/design/frontend/base/default/template/catalog/product/label/image.phtml
 !/app/design/frontend/base/default/template/catalog/product/view
 /app/design/frontend/base/default/template/catalog/product/view/**
 !/app/design/frontend/base/default/template/catalog/product/view/scpajaxoptions.phtml
