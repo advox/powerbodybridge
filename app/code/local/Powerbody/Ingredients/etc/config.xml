@@ -48,5 +48,12 @@
                 </args>
             </ingredients>
         </routers>
+        <layout>
+            <updates>
+                <ingredients>
+                    <file>ingredients.xml</file>
+                </ingredients>
+            </updates>
+        </layout>
     </frontend>
 </config>

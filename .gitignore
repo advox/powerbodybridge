@@ -30,8 +30,19 @@
 /app/design/frontend/base/default/etc
 /app/design/frontend/base/default/layout/**
 !/app/design/frontend/base/default/layout/simpleconfigurableproducts.xml
+!/app/design/frontend/base/default/layout/ingredients.xml
 
 /app/design/frontend/base/default/template/**
+
+!/app/design/frontend/base/default/template/ingredients
+/app/design/frontend/base/default/template/ingredients/**
+!/app/design/frontend/base/default/template/ingredients/product
+/app/design/frontend/base/default/template/ingredients/product/**
+!/app/design/frontend/base/default/template/ingredients/product/label
+/app/design/frontend/base/default/template/ingredients/product/label/**
+!/app/design/frontend/base/default/template/ingredients/product/label/image.phtml
+
+
 !/app/design/frontend/base/default/template/catalog
 /app/design/frontend/base/default/template/catalog/**
 !/app/design/frontend/base/default/template/catalog/product
