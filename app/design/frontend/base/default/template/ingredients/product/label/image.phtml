@@ -5,13 +5,16 @@ $currentProductModel = $this->getCurrentProduct();
 $productType = $currentProductModel->getData('type_id');
 ?>
 
-<?php if ($productType === Mage_Catalog_Model_Product_Type::TYPE_CONFIGURABLE): ?>
-    <?php $simpleProductArray = $this->getSimpleProductCollectionForConfigurable(); ?>
-    <?php if(false === empty($simpleProductArray)): ?>
+<?php if (
+    $productType === Mage_Catalog_Model_Product_Type::TYPE_CONFIGURABLE
+    && true === $this->checkIngredientsLabelsForConfigurableExists($currentProductModel)
+): ?>
+    <?php $simpleProductCollection = $this->getSimpleProductCollectionForConfigurable(); ?>
+    <?php if($simpleProductCollection->getSize() > 0): ?>
         <select name="ingredient-configurable-product-id" id="ingredient-configurable-product-id">
-            <?php foreach($simpleProductArray as $simpleProductModel): ?>
+            <?php foreach($simpleProductCollection as $simpleProductModel): ?>
                 <?php /* @var $simpleProductModel Mage_Catalog_Model_Product */ ?>
-                <option value="<?php echo $simpleProductModel->getId(); ?>"><?php echo $simpleProductModel->getName(); ?></option>
+                <option value="<?php echo $simpleProductModel->getId(); ?>"><?php echo $simpleProductModel->getData('name'); ?></option>
             <?php endforeach; ?>
         </select>
     <?php endif; ?>

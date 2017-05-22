@@ -23,16 +23,17 @@ class Powerbody_Ingredients_Block_View extends Mage_Core_Block_Template
     }
 
     /**
-     * @return array
+     * @return Mage_Catalog_Model_Resource_Product_Collection
      */
     public function getSimpleProductCollectionForConfigurable()
     {
+        /* @var $ingredientsProductLabelProvider Powerbody_Ingredients_Model_Provider_Product_Label */
+        $ingredientsProductLabelProvider = Mage::getModel('ingredients/provider_product_label');
         /* @var $configurableProductModel Mage_Catalog_Model_Product */
         $configurableProductModel = $this->getCurrentProduct();
-        /* @var $configurableTypeModel Mage_Catalog_Model_Product_Type_Configurable */
-        $configurableTypeModel = Mage::getModel('catalog/product_type_configurable');
 
-        return $configurableTypeModel->getUsedProducts(null,$configurableProductModel);
+        return $ingredientsProductLabelProvider
+            ->getSimpleProductCollectionForConfigurable($configurableProductModel);
     }
 
     /**
@@ -41,5 +42,25 @@ class Powerbody_Ingredients_Block_View extends Mage_Core_Block_Template
     public function getIngredientUrl()
     {
         return Mage::getUrl('ingredients/label');
+    }
+
+    /**
+     * @param Mage_Catalog_Model_Product $configurableProductModel
+     *
+     * @return bool
+     */
+    public function checkIngredientsLabelsForConfigurableExists(
+        Mage_Catalog_Model_Product $configurableProductModel
+    ) {
+        if (null !== $configurableProductModel->getId()) {
+
+            /* @var $ingredientsProductLabelProvider Powerbody_Ingredients_Model_Provider_Product_Label */
+            $ingredientsProductLabelProvider = Mage::getModel('ingredients/provider_product_label');
+
+            return $ingredientsProductLabelProvider
+                ->checkIngredientsLabelsForConfigurableExists($configurableProductModel);
+        }
+
+        return false;
     }
 }

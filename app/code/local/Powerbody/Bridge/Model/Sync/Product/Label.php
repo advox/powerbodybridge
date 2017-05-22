@@ -56,13 +56,13 @@ class Powerbody_Bridge_Model_Sync_Product_Label extends Powerbody_Bridge_Model_S
     }
 
     /**
-     * @param array $sku
+     * @param array $dataArray
      *
      * @return array
      */
-    protected function _getProductsLabelArray(array $sku)
+    protected function _getProductsLabelArray(array $dataArray)
     {
-        return $this->_makeServiceMethodRequest(self::SERVICE_METHOD, ['sku' => $sku]);
+        return $this->_makeServiceMethodRequest(self::SERVICE_METHOD, $dataArray);
     }
 
     /**
