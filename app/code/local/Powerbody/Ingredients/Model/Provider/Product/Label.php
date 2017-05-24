@@ -50,6 +50,10 @@ class Powerbody_Ingredients_Model_Provider_Product_Label
         /* @var $simpleProductCollection Mage_Catalog_Model_Resource_Product_Collection */
         $simpleProductCollection = $this->getSimpleProductCollectionForConfigurable($configurableProductModel);
 
+        if (false === $this->_checkIfWatermarkFileExists()) {
+            return false;
+        }
+
         if ($simpleProductCollection->getSize() > 0) {
             $simpleProductArray = $simpleProductCollection->getColumnValues('entity_id');
             /* @var $ingredientsLabelCollection Powerbody_Ingredients_Model_Mysql4_Product_Label_Collection */
@@ -97,5 +101,17 @@ class Powerbody_Ingredients_Model_Provider_Product_Label
         ;
 
         return $simpleProductCollection;
+    }
+
+    /**
+     * @return bool
+     */
+    private function _checkIfWatermarkFileExists()
+    {
+        /* @var $ingredientsHelper Powerbody_Ingredients_Helper_Data */
+        $ingredientsHelper = Mage::helper('ingredients');
+        $watermarkFilPath = $ingredientsHelper->getWatermarkImagePath();
+
+        return boolval(file_exists($watermarkFilPath) && is_file($watermarkFilPath));
     }
 }

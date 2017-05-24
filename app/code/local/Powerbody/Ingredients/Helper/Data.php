@@ -17,13 +17,14 @@ class Powerbody_Ingredients_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function removeOutdatedLabelImage(
         Powerbody_Ingredients_Model_Product_Label $ingredientsProductLabelModel
-    ) {
+    )
+    {
         $path = $ingredientsProductLabelModel->getData('path');
         $filename = $ingredientsProductLabelModel->getData('filename');
 
         if (false === empty($path) && false === empty($filename)) {
             $mediaBaseDir = Mage::getBaseDir('media');
-            $originalFilePath = $mediaBaseDir . DS . $path  . $filename;
+            $originalFilePath = $mediaBaseDir . DS . $path . $filename;
             $cachedFilePath = $mediaBaseDir . DS . $path . 'cached/' . $filename;
 
             if (true === file_exists($originalFilePath)) {
@@ -43,9 +44,10 @@ class Powerbody_Ingredients_Helper_Data extends Mage_Core_Helper_Abstract
     public function downloadLatestLabelImage(
         Powerbody_Ingredients_Model_Product_Label $ingredientsProductLabelModel,
         array $serviceLabelData
-    ) {
+    )
+    {
         $baseMediaUrl = Mage::getStoreConfig('bridge_settings/ingredients/labels_default_host');
-        $downloadFile = $baseMediaUrl .'media/'. $serviceLabelData['path'] . $serviceLabelData['filename'];
+        $downloadFile = $baseMediaUrl . 'media/' . $serviceLabelData['path'] . $serviceLabelData['filename'];
         $destinationDirectory = Mage::getBaseDir('media') . DS . $serviceLabelData['path'];
         $destinationFile = $destinationDirectory . $ingredientsProductLabelModel->getData('product_id') . self::IMAGE_EXT;
 
@@ -59,7 +61,7 @@ class Powerbody_Ingredients_Helper_Data extends Mage_Core_Helper_Abstract
         $statusCode = (int)curl_getinfo($curlHandler, CURLINFO_HTTP_CODE);
         curl_close($curlHandler);
 
-        if($statusCode == 200) {
+        if ($statusCode == 200) {
             copy($downloadFile, $destinationFile);
         } else {
             Mage::log(
@@ -77,8 +79,7 @@ class Powerbody_Ingredients_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function generateIngredientsProductLabelWithWatermark($productId, $localeCode)
     {
-        $watermarkPath = Mage::getStoreConfig('bridge_settings/ingredients/watermark');
-        $watermarkImage = Mage::getBaseDir('media') . DS . self::WATERMARK_IMAGE_PATH . DS . $watermarkPath;
+        $watermarkImage = $this->getWatermarkImagePath();
         $mainImage = $this->_getBaseMainImagePath($productId, $localeCode);
         $cachedImagePath = $this->_getBaseCachedImagePath($productId, $localeCode);
 
@@ -90,7 +91,7 @@ class Powerbody_Ingredients_Helper_Data extends Mage_Core_Helper_Abstract
             return new Varien_Object(['status' => false]);
         }
 
-        try{
+        try {
             $image = new Varien_Image($mainImage);
             $image->setWatermarkWidth(self::WATERMARK_WIDTH);
             $image->setWatermarkHeigth(self::WATERMARK_HEIGHT);
@@ -118,7 +119,8 @@ class Powerbody_Ingredients_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getIngredientsProductLabelImagePath(
         Powerbody_Ingredients_Model_Product_Label $ingredientsProductLabelModel
-    ) {
+    )
+    {
         $productId = $ingredientsProductLabelModel->getData('product_id');
         $localeCode = $ingredientsProductLabelModel->getData('locale');
         $originalImagePath = $this->_getBaseMainImagePath($productId, $localeCode);
@@ -134,12 +136,22 @@ class Powerbody_Ingredients_Helper_Data extends Mage_Core_Helper_Abstract
             && true === file_exists($originalImagePath)
         ) {
             $result = $this->generateIngredientsProductLabelWithWatermark($productId, $localeCode);
-            if(true === $result->status && true === file_exists($cachedImagePath)) {
+            if (true === $result->status && true === file_exists($cachedImagePath)) {
                 return $imageReturnPath;
             }
         }
 
         return '';
+    }
+
+    /**
+     * @return string
+     */
+    public function getWatermarkImagePath()
+    {
+        $watermarkPath = Mage::getStoreConfig('bridge_settings/ingredients/watermark');
+
+        return Mage::getBaseDir('media') . DS . self::WATERMARK_IMAGE_PATH . DS . $watermarkPath;
     }
 
     /**
