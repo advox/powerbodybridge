@@ -16,6 +16,7 @@
 !/app/design/adminhtml/default/default/layout/bridge.xml
 !/app/design/adminhtml/default/default/layout/category.xml
 !/app/design/adminhtml/default/default/layout/manufacturer.xml
+!/app/design/adminhtml/default/default/layout/powerbody_adminhtml.xml
 
 /app/design/adminhtml/default/default/locale
 

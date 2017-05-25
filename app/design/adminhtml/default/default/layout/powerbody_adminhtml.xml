@@ -1,0 +1,7 @@
+<layout>
+    <adminhtml_catalog_product_editlimited>
+        <reference name="content">
+            <block type="powerbody_adminhtml/catalog_product_edit_limited" name="catalog.product.edit.limited" />
+        </reference>
+    </adminhtml_catalog_product_editlimited>
+</layout>

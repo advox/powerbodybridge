@@ -2,17 +2,6 @@
 
 class Powerbody_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Controller_Action
 {
-    /**
-     * @var Mage_Adminhtml_Model_Session
-     */
-    private $_session;
-
-    public function _construct()
-    {
-        parent::_construct();
-        $this->_session = Mage::getSingleton('adminhtml/session');
-    }
-
     public function editLimitedAction()
     {
         $this->loadLayout();
@@ -25,7 +14,7 @@ class Powerbody_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Contr
     public function saveLimitedAction()
     {
         if (false === $this->_validateFormKey()) {
-            $this->_session->addError($this->__('The form key is invalid, please refresh a page and try again.'));
+            $this->_getSession()->addError($this->__('The form key is invalid, please refresh a page and try again.'));
             return $this->_redirectReferer();
         }
 
@@ -34,10 +23,10 @@ class Powerbody_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Contr
             $product = Mage::getModel('catalog/product')->load($requestParamsArray['entity_id']);
             $product->addData($requestParamsArray);
             $product->save();
-            $this->_session->addSuccess($this->__('The product has been saved.'));
+            $this->_getSession()->addSuccess($this->__('The product has been saved.'));
         } catch (Exception $e) {
             Mage::logException($e);
-            $this->_session->addError($e->getMessage());
+            $this->_getSession()->addError($e->getMessage());
         }
 
         return $this->_redirectReferer();
