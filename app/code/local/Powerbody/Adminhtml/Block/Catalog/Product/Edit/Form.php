@@ -54,7 +54,6 @@ class Powerbody_Adminhtml_Block_Catalog_Product_Edit_Form extends Mage_Adminhtml
             'name' => 'news_from_date',
             'image' => $this->getSkinUrl('images/grid-cal.gif'),
             'format' => Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT),
-            'value' => date(Mage::app()->getLocale()->getDateStrFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT))
         ]);
 
         $fieldset->addField('news_to_date', 'date', [
@@ -63,7 +62,6 @@ class Powerbody_Adminhtml_Block_Catalog_Product_Edit_Form extends Mage_Adminhtml
             'name' => 'news_to_date',
             'image' => $this->getSkinUrl('images/grid-cal.gif'),
             'format' => Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT),
-            'value' => date(Mage::app()->getLocale()->getDateStrFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT))
         ]);
 
         $fieldset->addField('special_price', 'text', [
@@ -81,7 +79,6 @@ class Powerbody_Adminhtml_Block_Catalog_Product_Edit_Form extends Mage_Adminhtml
             'name' => 'special_from_date',
             'image' => $this->getSkinUrl('images/grid-cal.gif'),
             'format' => Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT),
-            'value' => date(Mage::app()->getLocale()->getDateStrFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT))
         ]);
 
         $fieldset->addField('special_to_date', 'date', [
@@ -90,7 +87,6 @@ class Powerbody_Adminhtml_Block_Catalog_Product_Edit_Form extends Mage_Adminhtml
             'name' => 'special_to_date',
             'image' => $this->getSkinUrl('images/grid-cal.gif'),
             'format' => Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT),
-            'value' => date(Mage::app()->getLocale()->getDateStrFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT))
         ]);
 
         $fieldset->addField('is_updated_while_import', 'select', [
