@@ -16,7 +16,7 @@ class Powerbody_Bridge_Model_Catalog_Product_Attribute_Backend_Startdate extends
             return false;
         }
 
-        if ($startDate === '' && $object->getSpecialPrice() && $attributeName === 'special_price_from' ) {
+        if ($startDate === '' && $object->getSpecialPrice() && $attributeName !== 'news_from_date') {
             $startDate = Mage::app()->getLocale()->date();
         }
 
