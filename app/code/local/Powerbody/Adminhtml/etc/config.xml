@@ -31,6 +31,17 @@
             </design>
         </admin>
     </stores>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Powerbody_Adminhtml after="Mage_Adminhtml">Powerbody_Adminhtml</Powerbody_Adminhtml>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
     <adminhtml>
         <events>
             <core_block_abstract_prepare_layout_before>
@@ -49,6 +60,21 @@
                     </powerbody_adminhtml>
                 </observers>
             </eav_collection_abstract_load_before>
+            <controller_action_predispatch_adminhtml_catalog_product_edit>
+                <observers>
+                    <redirect_to_limited_if_no_permission>
+                        <class>powerbody_adminhtml/permission_observer</class>
+                        <method>redirectToLimitedIfNoPermission</method>
+                    </redirect_to_limited_if_no_permission>
+                </observers>
+            </controller_action_predispatch_adminhtml_catalog_product_edit>
         </events>
+        <layout>
+            <updates>
+                <powerbody_adminhtml>
+                    <file>powerbody_adminhtml.xml</file>
+                </powerbody_adminhtml>
+            </updates>
+        </layout>
     </adminhtml>
 </config>

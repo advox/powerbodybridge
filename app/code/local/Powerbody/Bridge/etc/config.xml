@@ -47,6 +47,11 @@
                     </order_transfer_status>
                 </entities>
             </bridge_mysql4>
+            <catalog>
+                <rewrite>
+                    <product_attribute_backend_startdate>Powerbody_Bridge_Model_Catalog_Product_Attribute_Backend_Startdate</product_attribute_backend_startdate>
+                </rewrite>
+            </catalog>
         </models>
         <resources>
             <bridge_setup>

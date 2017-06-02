@@ -1,0 +1,22 @@
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <catalog translate="title" module="catalog">
+                        <title>Catalog</title>
+                        <sort_order>30</sort_order>
+                        <children>
+                            <products_limited translate="title">
+                                <title>Manage Products (Limited view)</title>
+                            </products_limited>
+                            <products_full translate="title">
+                                <title>Manage Products (Full view)</title>
+                            </products_full>
+                        </children>
+                    </catalog>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
