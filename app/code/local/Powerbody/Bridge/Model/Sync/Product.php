@@ -155,6 +155,13 @@ class Powerbody_Bridge_Model_Sync_Product extends Powerbody_Bridge_Model_Sync_Pr
             if (null === $productUpdatedAt || $internalUpdatedAt < $externalUpdatedAt) {
                 $productsSkuArray[] = $sku;
             }
+        
+            $imagePath = $productModel->getImage();
+            $imageFullPath = Mage::getBaseDir('media') . DS . 'catalog' . DS . 'product' . $imagePath;
+
+            if (!$imagePath || !file_exists($imageFullPath)) {
+                $productsSkuArray[] = $sku;
+            }
         }
 
         return $productsSkuArray;
