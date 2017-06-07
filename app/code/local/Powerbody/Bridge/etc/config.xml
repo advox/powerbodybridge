@@ -120,7 +120,7 @@
                     <cron_expr>*/1 * * * *</cron_expr>
                 </schedule>
                 <run>
-                    <model>bridge/order_cron::updateDropshippingOrders</model>
+                    <model>bridge/order_cron::updateOrders</model>
                 </run>
             </update_dropshipping_orders>
             <compare_versions>
