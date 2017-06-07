@@ -93,7 +93,7 @@
             </import_full>
             <import_stocks>
                 <schedule>
-                    <cron_expr>*/1 * * * *</cron_expr>
+                    <cron_expr>*/5 * * * *</cron_expr>
                 </schedule>
                 <run>
                     <model>bridge/importer::importStocks</model>
