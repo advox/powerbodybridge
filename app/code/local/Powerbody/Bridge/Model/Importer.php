@@ -32,11 +32,18 @@ class Powerbody_Bridge_Model_Importer
     }
 
     /**
-     * import stocks and prices
+     * import stocks
      */
-    public function importStocksAndPrices()
+    public function importStocks()
     {
-        $this->_runImport(self::$_servicesPartial);
+        $this->_runImport([self::$_servicesPartial[0]]);
+    }
+    
+    /**
+     * import prices
+     */
+    public function importPrices() {
+        $this->_runImport([self::$_servicesPartial[1]]);
     }
 
     /**

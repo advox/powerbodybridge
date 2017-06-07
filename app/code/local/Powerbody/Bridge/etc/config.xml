@@ -91,14 +91,22 @@
                     <model>bridge/importer::importAttributesAndProducts</model>
                 </run>
             </import_full>
-            <import_partial>
+            <import_stocks>
                 <schedule>
-                    <cron_expr>*/15 * * * *</cron_expr>
+                    <cron_expr>*/1 * * * *</cron_expr>
                 </schedule>
                 <run>
-                    <model>bridge/importer::importStocksAndPrices</model>
+                    <model>bridge/importer::importStocks</model>
                 </run>
-            </import_partial>
+            </import_stocks>
+            <import_prices>
+                <schedule>
+                    <cron_expr>0 */12 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>bridge/importer::importPrices</model>
+                </run>
+            </import_prices>
             <create_dropshipping_orders>
                 <schedule>
                     <cron_expr>*/1 * * * *</cron_expr>
