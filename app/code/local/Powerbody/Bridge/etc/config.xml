@@ -115,14 +115,14 @@
                     <model>bridge/cron::createDropshippingOrders</model>
                 </run>
             </create_dropshipping_orders>
-            <stockalert_autosend>
+            <update_dropshipping_orders>
                 <schedule>
-                    <cron_expr>*/15 * * * *</cron_expr>
+                    <cron_expr>*/1 * * * *</cron_expr>
                 </schedule>
                 <run>
                     <model>bridge/order_cron::updateDropshippingOrders</model>
                 </run>
-            </stockalert_autosend>
+            </update_dropshipping_orders>
             <compare_versions>
                 <schedule>
                     <cron_expr>0 0 * * *</cron_expr>
