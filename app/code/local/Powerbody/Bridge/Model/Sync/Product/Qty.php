@@ -72,7 +72,10 @@ class Powerbody_Bridge_Model_Sync_Product_Qty extends Powerbody_Bridge_Model_Syn
             $stockItem->setData('manage_stock', true);
             $stockItem->setData('stock_id', 1);
             $stockItem->setData('qty', $qty);
-            $stockItem->save();
+            
+            if ($stockItem->getData('qty') != $stockItem->getOrigData('qty')) {
+                $stockItem->save();
+            }
         }
     }
 
