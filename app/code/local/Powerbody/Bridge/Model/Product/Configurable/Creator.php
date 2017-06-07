@@ -104,6 +104,19 @@ class Powerbody_Bridge_Model_Product_Configurable_Creator
         if (true === empty($attributesArray)) {
             return false;
         }
+
+        foreach ($productData['children'] as $productDataSku) {
+            /** @var $productModel Mage_Catalog_Model_Product **/
+            $productModel = Mage::getModel('catalog/product')->loadByAttribute('sku', $productDataSku);
+
+            if (null === $productModel->getId()) {
+                continue;
+            }
+
+            $configProduct->setData('manufacturer', $productModel->getData('manufacturer'));
+            break;
+        }
+
         $configProduct->setConfigurableProductsData($childrenArray);
         $configProduct->setConfigurableAttributesData($attributesArray);
         $this->_setConfigProductStockData($configProduct, $productData);
