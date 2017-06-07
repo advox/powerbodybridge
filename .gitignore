@@ -1,5 +1,6 @@
 .vagrant
 .idea
+nbproject/
 /app/code/core
 
 /app/code/community/**
