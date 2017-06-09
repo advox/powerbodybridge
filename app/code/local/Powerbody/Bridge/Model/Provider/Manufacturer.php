@@ -75,4 +75,17 @@ class Powerbody_Bridge_Model_Provider_Manufacturer
 
         return $catalogManufacturersBaseIds;
     }
+    
+    /**
+     * @return array
+     */
+    public function getManufacturersArray()
+    {
+        /* @var $resource Mage_Core_Model_Resource */
+        $resource = Mage::getSingleton('core/resource');
+        /* @var $readConnection Magento_Db_Adapter_Pdo_Mysql */
+        $readConnection = $resource->getConnection('core_read');
+        $queryString = 'SELECT id, name FROM ' . $resource->getTableName('bridge/imported_manufacturer');
+        return $readConnection->fetchAll($queryString, null, PDO::FETCH_KEY_PAIR);
+    }
 }

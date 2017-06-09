@@ -9,12 +9,7 @@ class Powerbody_Bridge_Helper_Manufacturer extends Mage_Core_Helper_Abstract
     
     public function __construct()
     {
-        /** @var $manufacturersCollection Powerbody_Bridge_Model_Mysql4_Imported_Manufacturer_Collection */
-        $manufacturersCollection = Mage::getModel('bridge/imported_manufacturer')->getCollection();
-
-        foreach ($manufacturersCollection as $manufacturerModel) { /* @var $manufacturerModel Powerbody_Bridge_Model_Imported_Manufacturer */
-            $this->manufacturers[$manufacturerModel->getId()] = $manufacturerModel->getName();
-        }
+        $this->manufacturers = Mage::getSingleton('bridge/provider_manufacturer')->getManufacturersArray();
     }
     
     /**
