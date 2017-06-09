@@ -57,5 +57,30 @@ class Powerbody_Manufacturer_Model_Source_Manufacturer extends Mage_Eav_Model_En
         }
 
         return $this->_manufacturerCollection;
+    }   
+     
+    /**
+     * @return array
+     */
+    public function getFlatColums()
+    {
+        return [
+            $this->getAttribute()->getAttributeCode() => [
+                'type'      => 'int',
+                'unsigned'  => true,
+                'is_null'   => true,
+                'default'   => null,
+                'extra'     => null
+            ]
+        ];
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getFlatUpdateSelect($store)
+    {
+        return Mage::getResourceSingleton('eav/entity_attribute')
+        ->getFlatUpdateSelect($this->getAttribute(), $store);
     }
 }

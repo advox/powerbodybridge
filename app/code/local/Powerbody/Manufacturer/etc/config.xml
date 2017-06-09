@@ -72,6 +72,13 @@
                 </observers>
             </controller_action_predispatch>
         </events>
+        <product>
+            <collection>
+                <attributes>
+                    <manufacturer/>
+                </attributes>
+            </collection>
+        </product>
     </frontend>
     <global>
         <blocks>
