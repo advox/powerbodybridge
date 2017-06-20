@@ -434,6 +434,17 @@ class Powerbody_Bridge_Model_Product_Configurable_Creator
     {
         $configProduct->save();
         $productId = $configProduct->getId();
+        
+        /* @var $productManufacturerModel Powerbody_Manufacturer_Model_Product */
+        $productManufacturerModel = Mage::getModel('manufacturer/product')
+            ->getCollection()
+            ->addFieldToFilter('product_id', $productId)
+            ->getFirstItem();
+    
+        $productManufacturerModel->setData('product_id', $productId);
+        $productManufacturerModel->setData('manufacturer_id', $configProduct->getData('manufacturer'));
+        $productManufacturerModel->save();
+        
         if ($productId === null) {
             Mage::log(sprintf('ERROR in product: %s', $configProduct->getSku()));
         }
