@@ -23,6 +23,12 @@ class Powerbody_Bridge_Model_Importer
         'bridge/sync_product_price',
     ];
 
+    /** @var array */
+    private static $_servicesAdditional = [
+        /** @see Powerbody_Bridge_Model_Sync_Product_Label */
+        'bridge/sync_product_label',
+    ];
+
     /**
      * import attributes and products
      */
@@ -47,6 +53,14 @@ class Powerbody_Bridge_Model_Importer
     }
 
     /**
+     * import additional data
+     */
+    public function importAdditional()
+    {
+        $this->_runImport(self::$_servicesAdditional);
+    }
+
+    /**
      * @param array $servicesArray
      */
     private function _runImport(array $servicesArray)
@@ -62,6 +76,7 @@ class Powerbody_Bridge_Model_Importer
                 Mage::logException($e);
             }
         }
+        
     }
 
     /**

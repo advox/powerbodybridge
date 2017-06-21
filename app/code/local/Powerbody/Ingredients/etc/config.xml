@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Powerbody_Ingredients>
-            <version>0.1.0</version>
+            <version>0.1.1</version>
         </Powerbody_Ingredients>
     </modules>
     <global>
@@ -24,9 +24,9 @@
             <ingredients_mysql4>
                 <class>Powerbody_Ingredients_Model_Mysql4</class>
                 <entities>
-                    <product_label_image>
-                        <table>ingredients_product_label_image</table>
-                    </product_label_image>
+                    <product_label>
+                        <table>ingredients_product_label</table>
+                    </product_label>
                 </entities>
             </ingredients_mysql4>
         </models>
@@ -38,4 +38,22 @@
             </ingredients_setup>
         </resources>
     </global>
+    <frontend>
+        <routers>
+            <ingredients>
+                <use>standard</use>
+                <args>
+                    <module>Powerbody_Ingredients</module>
+                    <frontName>ingredients</frontName>
+                </args>
+            </ingredients>
+        </routers>
+        <layout>
+            <updates>
+                <ingredients>
+                    <file>ingredients.xml</file>
+                </ingredients>
+            </updates>
+        </layout>
+    </frontend>
 </config>
