@@ -2,8 +2,9 @@
 /* @var $this Mage_Core_Model_Resource_Setup */
 $installer = $this;
 $installer->startSetup();
-$tableName = $this->getTable('ingredients/product_label_image');
+$tableName = $this->getTable('ingredients_product_label_image');
 $installer->getConnection()->dropTable($tableName);
+
 $table = $installer->getConnection()->newTable($tableName)
     ->addColumn('id', Varien_Db_Ddl_Table::TYPE_INTEGER, null, array(
         'identity'  =>  true,

@@ -99,14 +99,22 @@
                     <model>bridge/importer::importStocks</model>
                 </run>
             </import_stocks>
-            <import_prices>
+            <import_partial>
                 <schedule>
                     <cron_expr>0 */12 * * *</cron_expr>
                 </schedule>
                 <run>
                     <model>bridge/importer::importPrices</model>
                 </run>
-            </import_prices>
+            </import_partial>
+            <import_additional>
+                <schedule>
+                    <cron_expr>30 2 * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>bridge/importer::importAdditional</model>
+                </run>
+            </import_additional>
             <create_dropshipping_orders>
                 <schedule>
                     <cron_expr>*/1 * * * *</cron_expr>
