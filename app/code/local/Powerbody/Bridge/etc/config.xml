@@ -99,14 +99,14 @@
                     <model>bridge/importer::importStocks</model>
                 </run>
             </import_stocks>
-            <import_partial>
+            <import_prices>
                 <schedule>
                     <cron_expr>0 */12 * * *</cron_expr>
                 </schedule>
                 <run>
                     <model>bridge/importer::importPrices</model>
                 </run>
-            </import_partial>
+            </import_prices>
             <import_additional>
                 <schedule>
                     <cron_expr>30 2 * * *</cron_expr>
