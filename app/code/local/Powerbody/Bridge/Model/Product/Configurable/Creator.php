@@ -104,6 +104,20 @@ class Powerbody_Bridge_Model_Product_Configurable_Creator
         if (true === empty($attributesArray)) {
             return false;
         }
+
+        foreach ($productData['children'] as $productDataSku) {
+            /** @var $productModel Mage_Catalog_Model_Product **/
+            $productModel = Mage::getModel('catalog/product');
+            $productModel->load($productModel->getIdBySku($productDataSku));
+
+            if (null === $productModel->getId()) {
+                continue;
+            }
+
+            $configProduct->setData('manufacturer', $productModel->getData('manufacturer'));
+            break;
+        }
+
         $configProduct->setConfigurableProductsData($childrenArray);
         $configProduct->setConfigurableAttributesData($attributesArray);
         $this->_setConfigProductStockData($configProduct, $productData);
@@ -434,6 +448,17 @@ class Powerbody_Bridge_Model_Product_Configurable_Creator
     {
         $configProduct->save();
         $productId = $configProduct->getId();
+        
+        /* @var $productManufacturerModel Powerbody_Manufacturer_Model_Product */
+        $productManufacturerModel = Mage::getModel('manufacturer/product')
+            ->getCollection()
+            ->addFieldToFilter('product_id', $productId)
+            ->getFirstItem();
+    
+        $productManufacturerModel->setData('product_id', $productId);
+        $productManufacturerModel->setData('manufacturer_id', $configProduct->getData('manufacturer'));
+        $productManufacturerModel->save();
+        
         if ($productId === null) {
             Mage::log(sprintf('ERROR in product: %s', $configProduct->getSku()));
         }
