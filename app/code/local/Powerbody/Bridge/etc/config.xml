@@ -60,6 +60,16 @@
                 </setup>
             </bridge_setup>
         </resources>
+        <events>
+            <sales_order_place_after>
+                <observers>
+                    <add_order_to_bridge_order_transfer_status>
+                        <class>bridge/observer</class>
+                        <method>addOrderToBridgeOrderTransferStatus</method>
+                    </add_order_to_bridge_order_transfer_status>
+                </observers>
+            </sales_order_place_after>
+        </events>
     </global>
     <admin>
         <routers>
@@ -162,16 +172,4 @@
             </dropshipping>
         </bridge_settings>
     </default>
-    <frontend>
-        <events>
-            <sales_order_place_after>
-                <observers>
-                    <add_order_to_bridge_order_transfer_status>
-                        <class>bridge/observer</class>
-                        <method>addOrderToBridgeOrderTransferStatus</method>
-                    </add_order_to_bridge_order_transfer_status>
-                </observers>
-            </sales_order_place_after>
-        </events>
-    </frontend>
 </config>
